@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antnest.uim.biz.mapper.OrganizationMemberMapper">
+
+	<select id="selectByAccountIds" resultType="com.antnest.uim.entity.OrganizationMember">
+		select  * from uim_organization_member
+		where account_id in
+		<foreach collection="accountIds" item="id" separator="," open="(" close=")">
+			#{id}
+		</foreach>
+		and delete_flag=0
+	</select>
+
+</mapper>

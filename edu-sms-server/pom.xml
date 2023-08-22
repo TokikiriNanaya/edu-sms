@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>edu-sms</artifactId>
+        <groupId>com.caizi</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>edu-sms-server</artifactId>
+
+    <properties>
+        <antnest-ms-servers.version>1.0.6-SNAPSHOT</antnest-ms-servers.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.caizi</groupId>
+            <artifactId>edu-sms-biz</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- antnest 服务组件-->
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-amc-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-amc-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-cmc-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-cmc-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-foss-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-foss-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-lac-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-lac-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-uam-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-uam-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-uim-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-uim-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-uom-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-uom-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo message="========= Copy SpringBoot jar ========="/>
+                                <copy todir="../dist">
+                                    <fileset dir="${project.build.directory}">
+                                        <include name="${project.build.finalName}.jar"/>
+                                    </fileset>
+                                </copy>
+                                <echo message="========= Copy done ========="/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

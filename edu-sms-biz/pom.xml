@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>edu-sms</artifactId>
+        <groupId>com.caizi</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <antnest-ms-servers.version>1.0.6-SNAPSHOT</antnest-ms-servers.version>
+    </properties>
+
+    <artifactId>edu-sms-biz</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.caizi</groupId>
+            <artifactId>edu-sms-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-uim-biz</artifactId>
+            <version>${antnest-ms-servers.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-uim-biz-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.antnest</groupId>
+            <artifactId>antnest-mscore-mysql</artifactId>
+            <version>1.0.6-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/antnest-mscore-mysql-1.0.6-SNAPSHOT.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+
+</project>

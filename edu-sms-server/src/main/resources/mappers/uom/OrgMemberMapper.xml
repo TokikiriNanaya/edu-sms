@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antnest.uom.biz.mapper.OrgMemberMapper">
+
+    <update id="sortAddByIds" parameterType="map">
+        update uom_org_member set sort_number=sort_number+#{addNum}
+        where id_ in
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="sortSubByIds" parameterType="map">
+        update uom_org_member set sort_number=sort_number-#{subNum}
+        where id_ in
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </update>
+</mapper>

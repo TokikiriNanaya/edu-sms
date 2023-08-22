@@ -1,0 +1,285 @@
+server:
+  port: 9002
+  tomcat:
+    max-threads: 4
+    min-spare-threads: 4
+
+mybatis:
+  mapper-locations: classpath:mappers/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/**/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+spring:
+  quartz:
+    auto-startup: false
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 2
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 1
+    lettuce:
+      pool:
+        max-active: 100
+        min-idle: 10
+        max-idle: 10
+    jedis:
+      pool:
+        max-active: 100
+        min-idle: 10
+        max-idle: 10
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/edu-sms?useunicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      enabled: true
+      maxFileSize: 200MB
+      maxRequestSize: 1000MB
+    http:
+      multipart:
+        max-file-size: 200MB
+        max-request-size: 1000MB
+  application:
+    name: EDU-SMS
+
+#ANTNEST config
+antnest:
+  sql:
+    excludeTenantSqlId[0]: com.antnest.uim.biz.mapper.AccountMapper.selectById
+    excludeTenantTable[0]: uim_organization
+    excludeTenantTable[1]: uim_account
+    excludeTenantTable[2]: amc_application
+    excludeTenantTable[3]: amc_client_version
+    excludeTenantTable[4]: amc_client_user_record
+    excludeTenantTable[5]: amc_system
+    excludeTenantTable[6]: lac_log_audit
+    excludeTenantTable[7]: lac_log_error
+    excludeTenantTable[8]: foss_file_object
+  prop:
+    validate:
+      code:
+        enable: true
+    app:
+      organization-account-id: 7785600687770816
+      system-id: 6177193737513089
+    sms:
+      app-id: notSet
+      account-sid: notSet
+      auth-token: notSet
+      dev-mode: true
+      validation-template: notSet
+    wx:
+      app-id: wx19d411ab2502061d
+      app-secret: 8057f202a0d9d6094979947c682e9584
+    msg:
+      server-host: "notSet"
+      #内部消息线程大小
+      inner-msg-thread-pool-size: 32
+      #外部消息线程大小
+      outer-msg-thread-pool-size: 32
+      app-key: test
+      master-secret: test
+      app-id: test
+      txt-dispatch-app: 1
+    security:
+      enable: true
+      visit-frequency: 100
+      total-visit-frequency: 1000
+      total-i-p-visit-frequency: 1000
+    event:
+      spring-async: true
+      enable: true
+      type: redis
+      #日志处理
+      listen-events[0]: com.antnest.mscore.event.events.BizEvent
+      listen-events[1]: com.antnest.mscore.event.events.ErrorEvent
+      listen-events[2]: com.antnest.foss.biz.events.events.BizFileUploadEvent
+      #文件处理
+      listen-events[3]: com.antnest.foss.biz.events.events.MoveToRealPathEvent
+      listen-events[4]: com.antnest.foss.biz.events.events.ThumbnailEvent
+    monitor:
+      enable: true
+    token:
+      json-exclude-convert-pattern: [
+        "/**/swagger-resources/**",
+        "/**/webjars/**",
+        "/**/swagger-ui.html",
+        "/**/favicon.ico",
+        "/**/error",
+        "/**/null/swagger-resources/**",
+        "/**/v2/api-docs/**"
+      ]
+      token-exclude-validation-pattern: [
+        "/**/edu_insp_login/getRandomImage",
+        "/**/edu_insp_login/doCheckLoginNameForUpdatePwd",
+        "/**/edu_insp_login/doSendSmsForUpdatePwd",
+        "/**/edu_insp_login/doCheckSmsForUpdatePwd",
+        "/**/edu_insp_login/updatePwd",
+        "/**/edu_insp_login/eduSmsLogin",
+        "/**/edu_insp_login/eduSmsLoginForWx",
+        "/**/edu_insp_login/getWxWebAccessToken",
+        "/**/edu_insp_login/getAppQrCode",
+
+        "/**/sms_kpi_base_item/findBaseItemTree",
+        "/**/sms_kpi_base_item/saveBaseItem",
+        "/**/sms_kpi_base_item/removeBaseItem",
+        "/**/sms_kpi_base_item/findThirdBaseItemList",
+        "/**/sms_kpi_temp_main/findTempList",
+        "/**/sms_kpi_temp_main/findTempItemTreeAndStat",
+        "/**/sms_kpi_temp_main/saveTemp",
+        "/**/sms_kpi_temp_main/removeTemp",
+        "/**/sms_kpi_temp_main/saveTempItemBatch",
+        "/**/sms_kpi_temp_main/removeTempItemBatch",
+        "/**/sms_kpi_temp_main/updateTempItemSortNum",
+
+        "/**/sms_sys_conf/getSysLogo",
+        "/**/sms_sys_conf/getSysIcon",
+        "/**/sms_sys_conf/getSysConf",
+        "/**/sms_sys_conf/getAppBackGround",
+        "/**/sms_task_plan/doWxTempMsgForLast",
+        "/**/sms_task_plan/doWxTempMsgForFirstDay",
+        "/**/edu_insp_isp_account/getBigDataPlatUrlConf",
+        "/**/edu_insp_isp_account/doPullNewOrgAndUser",
+        "/**/edu_insp_isp_account/getOrgAndUserPullRate",
+        "/**/edu_insp_isp_account/doBigDataPlatSsoLogin",
+        "/**/sms_task_month_report/doInitCurrMonth",
+        "/**/sms_task_month_report/doWxTempMsgForLast",
+        "/**/sms_stat/doStatTaskAndMonthReportForPlat",
+        "/fileDownload/file/open",
+        "/auth/adminLogin",
+        "/system/getAll",
+        "/**/swagger-resources/**",
+        "/**/webjars/**",
+        "/**/swagger-ui.html",
+        "/**/favicon.ico",
+        "/**/error",
+        "/**/null/swagger-resources/**",
+        "/**/v2/api-docs/**"
+      ]
+    file:
+      server-absolute-root-path: "/alidata/static/ms_images"
+      access-url-prefix: "https://edusms.antbenben.com/sms-app/ms_images"
+    audit:
+      export:
+        visitPrefix: https://edu_sms.antbenben.com/export
+        storePath: /alidata/static/edu_sms/export
+file:
+  temp:
+    path: /alidata/upload_files/temp
+  real:
+    path: /alidata/upload_files/real
+  chunk:
+    dir: /alidata/upload_files/chunks
+  thumbnail:
+    dir: /alidata/upload_files/thumbnail
+  #文件类型
+  extension:
+    document: "|doc|docx|xls|xlsx|pdf|DOC|DOCX|XLS|XLSX|PDF|"
+    image: "|GIF|JPEG|BMP|TIF|JPG|PCD|QTI|QTF|TIFF|gif|jpeg|bmp|tif|jpg|pcd|qti|qtf|tiff|"
+    video: "|mp4|m4v|mov|qt|avi|flv|wmv|asf|mpeg|mpg|vob|mkv|rmvb|rm|ts|dat|MP4|M4V|MOV|QT|AVI|FLV|WMV|ASF|MPEG|MPG|VOB|MKV|RMVB|RM|TS|DAT|"
+    radio: "|MP3|OGG|WAV|APE|CDA|AU|MIDI|MAC|AAC|mp3|ogg|wav|ape|cda|au|midi|mac|aac|"
+  request:
+    prefix: "https://edusms.antbenben.com/sms/upload_files"
+
+edu-sms:
+  temp-file-root: "d:/Temp/"
+  application-code-pc: "EDU_SMS_PC_ROOT"
+  quartz-local-api-path: http://127.0.0.1:9003/api
+  wx-template-id: vdrrSpgQvjLG2W3i3O-4EsXTNEvsb1L40WB_j59nCNQ
+  wx-web-url: https://edusms.antbenben.com/sms-app/#/?taskId=%s&optType=%s&userId=%s&orgId=%s&currRole=%s
+
+#对接大数据平台配置
+big-data-plat:
+  api-path: http://ws.api.test.sxw.cn/bigdata-base
+  sso-path: http://ws.api.test.sxw.cn/bigdata-base
+  local-path: https://edusms.antbenben.com
+  client-id: APP1668998892oWCyUEi
+  client_secret: 02fcf813da4d43e0823a725515a96e84
+  client-id-app: APP1669001728a8tqkPS
+  client_secret-app: 13c39067a79b448cb91e424ac3f6f266
+  root_org_id: 1
+  tenant_id: 510106
+
+#swagger config
+swagger:
+  enabled: true
+  docket:
+    edu-sms:
+      base-package: com.caizi.edu.sms.biz.controller
+      base-path: /**
+    cmc:
+      base-package: com.antnest.cmc.biz.controller
+      base-path: /**
+    amc:
+      base-package: com.antnest.amc.biz.controller
+      base-path: /**
+    uim:
+      base-package: com.antnest.uim.biz.controller
+      base-path: /**
+    uam:
+      base-package: com.antnest.uam.biz.controller
+      base-path: /**
+    uom:
+      base-package: com.antnest.uom.biz.controller
+      base-path: /**
+    foss:
+      base-package: com.antnest.foss.biz.controller
+      base-path: /**
+    lac:
+      base-package: com.antnest.lac.biz.controller
+      base-path: /**
+  authorization:
+    key-name: ANTNEST-TOKEN
+    name:  AntnestTokenAuthorize
+  title: "教育安全管理系统"
+  version: "1.0.6-SNAPSHOT"
+  host: 127.0.0.1:9003/api
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    lease-expiration-duration-in-seconds: 4
+    lease-renewal-interval-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      fetch-registry: true
+      register-with-eureka: true
+    registry-fetch-interval-seconds: 2
+    enabled: false
+#关闭自动检查
+management:
+  health:
+    rabbit:
+      enabled: false
+
+ribbon:
+  ConnectTimeout: 20000
+  ReadTimeout: 20000
+  okhttp:
+    enabled: true
+hystrix:
+  default:
+    execution:
+      isolation:
+        thread:
+          timeoutInMilliseconds: 20000
+#自定义变量
+excel-out:
+  location: d:/Temp/
