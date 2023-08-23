@@ -226,7 +226,7 @@ public class KpiBaseItemServiceImpl extends AntnestBaseServiceImpl<KpiBaseItemMa
     /**
      * 查询指标项详情
      */
-    public KpiBaseItem getKpiBaseItemById(Long id) {
+    public KpiBaseItem getBaseItemById(Long id) {
         return super.getById(id);
     }
 

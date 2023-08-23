@@ -44,4 +44,8 @@ public interface KpiBaseItemApi extends AntnestSimpleBaseApi<KpiBaseItem> {
     @RequestMapping(value = "/removeBaseItem", method = RequestMethod.POST)
     void removeBaseItem(@RequestParam(value = "itemId") Long itemId);
 
+    @ApiOperation(value = "查询指标项")
+    @RequestMapping(value = "/getBaseItemById", method = RequestMethod.POST)
+    KpiBaseItem getBaseItemById(@RequestParam(value = "id") Long id);
+
 }

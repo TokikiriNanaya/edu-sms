@@ -40,9 +40,12 @@ spring:
         max-idle: 10
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: edu_sms
-    password: pw7i7hMxMt4EAiHR
-    url: jdbc:mysql://kiriya.top:3306/edu_sms?useunicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+#    username: edu_sms
+#    password: pw7i7hMxMt4EAiHR
+#    url: jdbc:mysql://kiriya.top:3306/edu_sms?useunicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/edu_sms?useunicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
   main:
     allow-bean-definition-overriding: true
   servlet:
@@ -138,6 +141,7 @@ antnest:
         "/**/sms_kpi_base_item/findBaseItemTree",
         "/**/sms_kpi_base_item/saveBaseItem",
         "/**/sms_kpi_base_item/removeBaseItem",
+        "/**/sms_kpi_base_item/getBaseItemById",
         "/**/sms_kpi_base_item/findThirdBaseItemList",
         "/**/sms_kpi_temp_main/findTempList",
         "/**/sms_kpi_temp_main/findTempItemTreeAndStat",

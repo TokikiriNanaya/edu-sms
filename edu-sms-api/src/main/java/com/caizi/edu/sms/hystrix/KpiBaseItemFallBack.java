@@ -34,4 +34,9 @@ public class KpiBaseItemFallBack extends AntnestBaseFallback<KpiBaseItem> implem
     public void removeBaseItem(Long itemId) {
 
     }
+
+    @Override
+    public KpiBaseItem getBaseItemById(Long id) {
+        return null;
+    }
 }

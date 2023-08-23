@@ -44,4 +44,9 @@ public class KpiBaseItemController extends AntnestSimpleBaseController<KpiBaseIt
     public void removeBaseItem(Long itemId) {
         baseService.removeBaseItem(itemId);
     }
+
+    @Override
+    public KpiBaseItem getBaseItemById(Long id) {
+        return baseService.getBaseItemById(id);
+    }
 }

@@ -26,6 +26,6 @@ public interface KpiBaseItemService extends AntnestBaseService<KpiBaseItem> {
 
     void savaTempItemByThirdBaseItemId(Long id, Long tempId);
 
-
+    KpiBaseItem getBaseItemById(Long id);
 
 }
